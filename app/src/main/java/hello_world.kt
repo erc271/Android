@@ -1,9 +1,9 @@
-fun main () {
-    val ayoubb = "Hello world"
-    println(ayoubb)
-    test()
-
-}
+//fun main () {
+//    val ayoubb = "Hello world"
+//    println(ayoubb)
+//    test()
+//
+//}
 fun test () {
     println("Happy Birthday, Rover!")
     println("You are now 5 years old!")
