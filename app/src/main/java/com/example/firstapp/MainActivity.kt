@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     // Set the background color of the Surface to Blue
     Surface(
-        color = Color.Gray,
+        color = Color.Black,
         modifier = modifier
     ) {
         Text(
