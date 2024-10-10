@@ -1,60 +1,75 @@
-package birthdayApp
+package com.example.index
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.firstapp.ui.theme.FirstAppTheme
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.firstapp.ui.theme.FirstAppTheme // Ensure this matches your actual theme package
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             FirstAppTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Bakali")
+                    // Call the GreetingText function to display the birthday greeting
+                    GreetingText(message = "Happy Birthday Ayoub!")
                 }
             }
         }
     }
 }
 
+// Define the GreetingText composable function with a message and modifier
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    // Set the background color of the Surface to Blue
-    Surface(
-        color = Color.Black,
-        modifier = modifier
+fun GreetingText(message: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,  // Center horizontally in the Column
+        verticalArrangement = Arrangement.Center // Center vertically in the Column
     ) {
+        // Centered greeting message
         Text(
-            text = "Hey My Name is $name!!",
-            // Set the text color to Red
-            color = Color.Yellow,
-            modifier = modifier.padding(10.dp)
-
+            text = message,
+            modifier = modifier.padding(16.dp),
+            fontSize = 95.sp,
+            lineHeight = 150.sp,
+            textAlign = TextAlign.Center
         )
+
+        // Row for "From Me" text, aligned to the start (left)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth() // Fill the width of the parent
+                .padding(start = 16.dp) // Optional padding for left alignment
+        ) {
+            Text(
+                text = "From Me",
+                fontSize = 55.sp,
+                modifier = Modifier.align(Alignment.CenterVertically) // Vertically center the text within the Row
+            )
+        }
     }
 }
 
-@Preview(showBackground = true,
-    showSystemUi = true,
-    name = "My preview")
+// Preview of the GreetingText composable function
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun GreetingPreview() {
+fun BirthdayCardPreview() {
     FirstAppTheme {
-        Greeting("Bakali")
+        GreetingText(message = "Happy Birthday Ayoub!")
     }
 }
