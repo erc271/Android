@@ -3,6 +3,7 @@ package com.example.index
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -10,10 +11,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.foundation.Image
+import com.example.firstapp.R
+import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import com.example.firstapp.ui.theme.FirstAppTheme // Ensure this matches your actual theme package
 
 class MainActivity : ComponentActivity() {
@@ -21,55 +28,74 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FirstAppTheme {
+                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // Call the GreetingText function to display the birthday greeting
-                    GreetingText(message = "Happy Birthday Ayoub!")
+                    GreetingImage(
+                        message = "Happy Birthday Ayoub!",
+                        from = "From Me",
+                        modifier = Modifier.padding(8.dp)
+                    )
+
                 }
             }
         }
     }
 }
 
-// Define the GreetingText composable function with a message and modifier
 @Composable
-fun GreetingText(message: String, modifier: Modifier = Modifier) {
+fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,  // Center horizontally in the Column
-        verticalArrangement = Arrangement.Center // Center vertically in the Column
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
     ) {
-        // Centered greeting message
         Text(
             text = message,
-            modifier = modifier.padding(16.dp),
-            fontSize = 95.sp,
-            lineHeight = 150.sp,
+            fontSize = 100.sp,
+            lineHeight = 126.sp,
             textAlign = TextAlign.Center
         )
-
-        // Row for "From Me" text, aligned to the start (left)
-        Row(
+        Text(
+            text = from,
+            fontSize = 36.sp,
             modifier = Modifier
-                .fillMaxWidth() // Fill the width of the parent
-                .padding(start = 16.dp) // Optional padding for left alignment
-        ) {
-            Text(
-                text = "From Me",
-                fontSize = 55.sp,
-                modifier = Modifier.align(Alignment.CenterVertically) // Vertically center the text within the Row
-            )
-        }
+                .padding(16.dp)
+                .align(alignment = Alignment.End)
+
+        )
     }
 }
+@Composable
+fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier){
+val image = painterResource(id = R.drawable.androidparty)
+    Box(modifier){
+        Image(
+            painter = image,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            alpha = 0.5F,
+            modifier =Modifier.fillMaxSize()
+        )
+        GreetingText(message = message,
+            from =from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
 
-// Preview of the GreetingText composable function
-@Preview(showBackground = true, showSystemUi = true)
+            )
+    }
+
+}
+@Preview(showBackground = true,
+    showSystemUi = true)
 @Composable
 fun BirthdayCardPreview() {
     FirstAppTheme {
-        GreetingText(message = "Happy Birthday Ayoub!")
+        GreetingImage(
+            message = stringResource(R.string.happy_birthday_ayoub),
+            from = "From Me"
+        )
     }
 }
