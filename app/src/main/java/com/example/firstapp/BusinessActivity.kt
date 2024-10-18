@@ -1,4 +1,4 @@
-package bussinessCard
+package com.example.firstapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,17 +16,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.firstapp.R
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import com.example.firstapp.ui.theme.FirstAppTheme // Ensure this matches your actual theme package
 
-class MainActivity : ComponentActivity() {
+class BusinessActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
